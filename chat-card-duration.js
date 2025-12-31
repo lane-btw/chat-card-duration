@@ -1,7 +1,7 @@
 Hooks.once("init", () => {
-  game.settings.register("chat-notify-duration", "notifyDuration", {
-    name: "Chat Card Duration Slider",
-    hint: "How long chat message notifications stay visible (in seconds).",
+  game.settings.register("chat-card-duration", "duration", {
+    name: "Chat Card Duration",
+    hint: "How long chat cards remain visible (in seconds).",
     scope: "client",
     config: true,
     type: Number,
@@ -19,13 +19,9 @@ Hooks.once("ready", () => {
   if (!ChatLog) return;
 
   const applyDuration = () => {
-    const seconds = game.settings.get(
-      "chat-notify-duration",
-      "notifyDuration"
-    );
-
+    const seconds = game.settings.get("chat-card-duration", "duration");
     ChatLog.NOTIFY_DURATION = seconds * 1000;
-    console.log(`Chat Card Duration Slider | Set to ${seconds}s`);
+    console.log(`Chat Card Duration | Set to ${seconds}s`);
   };
 
   applyDuration();
